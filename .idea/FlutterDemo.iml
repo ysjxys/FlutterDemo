@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/hello_flatter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hello_flatter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/test_tap_btn/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/test_tap_btn/build" />
+      <excludeFolder url="file://$MODULE_DIR$/testflutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/testflutter/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
