@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter_bloc/LoginWIdget.dart';
 
 void main() => runApp(MyApp());
 
@@ -98,6 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            FlatButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginWidget();
+              }));
+            }, child: Icon(Icons.arrow_forward_ios))
           ],
         ),
       ),
