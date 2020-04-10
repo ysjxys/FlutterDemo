@@ -49,31 +49,20 @@ class _GrammarPage1State extends State<GrammarPage1> {
 
   @override
   Widget build(BuildContext context) {
-    getProperty1 = 2;
-    print('getProperty1: $getProperty1');
-    print('getProperty2: $getProperty2');
-    print('getProperty3: $getProperty3');
 
-    print('old  degree:$degree     radian:$radian');
-    degree = 120;
-    print('new  degree:$degree     radian:$radian');
+    testGet();
+
+    testPropertyInit();
+
+    testConstruction();
+
+    testMixAndWith();
+
+    testPositionParamAndNamedParam();
+
+    testOperator();
 
 
-    print('noInitProperty: $noInitProperty');
-
-    print('testStaticProperty: $testStaticProperty');
-
-    TestClass1 testClass1 = TestClass1(1, 2, 3);
-    print('testClass1.property1: ${testClass1.property1}   testClass1.property2: ${testClass1.property2}');
-
-    Student student = Student();
-    student.songName = 'mo li hua';
-    student.singTheSong(student.songName);
-
-    testParamMethod1(1);
-    testParamMethod1(1, 2);
-    testParamMethod2(1);
-    testParamMethod2(1, j: 5, k: 10);
 
     return Scaffold(
       appBar: AppBar(
@@ -82,6 +71,61 @@ class _GrammarPage1State extends State<GrammarPage1> {
       body: Center(),
     );
   }
+
+  void testGet() {
+    getProperty1 = 2;
+    print('getProperty1: $getProperty1');
+    print('getProperty2: $getProperty2');
+    print('getProperty3: $getProperty3');
+
+    print('old  degree:$degree     radian:$radian');
+    degree = 120;
+    print('new  degree:$degree     radian:$radian');
+  }
+
+  void testPropertyInit() {
+    print('noInitProperty: $noInitProperty');
+
+    print('testStaticProperty: $testStaticProperty');
+  }
+
+  void testConstruction() {
+    TestClass1 testClass1 = TestClass1(1, 2, 3);
+    print('testClass1.property1: ${testClass1.property1}   testClass1.property2: ${testClass1.property2}');
+  }
+
+  void testMixAndWith() {
+    Student student = Student();
+    student.songName = 'mo li hua';
+    student.singTheSong(student.songName);
+  }
+
+  void testPositionParamAndNamedParam() {
+    testParamMethod1(1);
+    testParamMethod1(1, 2);
+    testParamMethod2(1);
+    testParamMethod2(1, j: 5, k: 10);
+  }
+
+  void testOperator() {
+    int intI_10 = 10;
+    int intJ_30 = 30;
+    double doubleM_10 = 10.1;
+    double doubleN_30 = 30.1;
+
+    //   /：除以，不取整，会有小数
+    print('intI_10 / intJ_30: ${intI_10/intJ_30}');
+    print('doubleM_10 / doubleN_30: ${doubleM_10/doubleN_30}');
+
+    //  %: 取余，不取整，会有小数
+    print('intI_10 % intJ_30: ${intI_10%intJ_30}');
+    print('doubleM_10 % doubleN_30: ${doubleM_10%doubleN_30}');
+
+    //  ~/: 除以，去小数取整，不会有小数
+    print('intI_10 ~/ intJ_30: ${intI_10~/intJ_30}');
+    print('doubleM_10 ~/ doubleN_30: ${doubleM_10~/doubleN_30}');
+  }
+
 }
 
 class TestClass1 {
