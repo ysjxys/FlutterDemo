@@ -24,11 +24,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   pdf: ^1.6.0
-#  flutter_full_pdf_viewer: ^1.0.6
+  #  flutter_full_pdf_viewer: ^1.0.6
   path_provider: ^1.6.5
-#  printing: ^3.3.0
-#  http: ^0.12.0
+  #  printing: ^3.3.0
+  #  http: ^0.12.0
   pdf_viewer_plugin: ^1.0.0
+  modal_progress_hud: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -54,23 +55,27 @@ flutter:
     - assets/images/add_blue.png
     - assets/images/home_adverting_default.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
+      # An image asset can refer to one or more resolution-specific "variants", see
+      # https://flutter.dev/assets-and-images/#resolution-aware.
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+      # For details regarding adding assets from package dependencies, see
+      # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+      # To add custom fonts to your application, add a fonts section here,
+      # in this "flutter" section. Each entry in this list should have a
+      # "family" key with the font family name, and a "fonts" key with a
+      # list giving the asset and other descriptors for the font. For
+      # example:
+
+
+  fonts:
+    - family: Ali
+      fonts:
+       - asset: fonts/Alibaba-PuHuiTi-Regular.ttf
+    - family: SourceHanSansCN
+      fonts:
+       - asset: fonts/SourceHanSansCN-Normal.ttf
+      #fonts/
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

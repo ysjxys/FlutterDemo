@@ -9,6 +9,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:image/image.dart' as im;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class PDFPageWidget extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class PDFPageWidget extends StatefulWidget {
 
 class _PDFPageWidgetState extends State<PDFPageWidget> {
   String path;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -43,35 +45,53 @@ class _PDFPageWidgetState extends State<PDFPageWidget> {
   }
 
   void createAndSavePdf() async {
+    setState(() {
+      _isLoading = true;
+    });
     final pdf = new pw.Document();
+
+    var myTheme = pw.Theme.withFont(
+//      base: pw.Font.ttf(await rootBundle.load("fonts/Alibaba-PuHuiTi-Regular.ttf")),
+      base: pw.Font.ttf(
+          await rootBundle.load("fonts/SourceHanSansCN-Normal.ttf")), //思源黑体
+      bold: pw.Font.ttf(
+          await rootBundle.load("fonts/SourceHanSansCN-Normal.ttf")),
+      italic: pw.Font.ttf(
+          await rootBundle.load("fonts/SourceHanSansCN-Normal.ttf")),
+      boldItalic: pw.Font.ttf(
+          await rootBundle.load("fonts/SourceHanSansCN-Normal.ttf")),
+    );
 
     final image =
         await getImageFileFromAssets(pdf, 'assets/images/add_blue.png');
     final image2 = await getImageFileFromAssets(
         pdf, 'assets/images/home_adverting_default.png');
 
-
     print('PdfColor: ${PdfColor.fromRYB(0.5, 0.5, 0.5).toHex()}');
 
     pdf.addPage(
       pw.Page(
         pageFormat: PdfPageFormat.a4,
+        theme: myTheme,
         build: (pw.Context context) {
           return pw.Container(
               child: pw.Center(
                   child: pw.Column(children: [
-            pw.Text("Hello World", style: pw.TextStyle(fontSize: 18)),
-            pw.Text("来个中文", style: pw.TextStyle(fontSize: 18)),
-
-            pw.Container(
-              width: 200,
-              height: 200,
-
-//              color: PdfColor.fromRYB(0.5, 0.5, 0.5),
-              color: PdfColor.fromHex('#ff9b7449'),
-//              child: pw.Image(image2),
+            pw.Text("Hello World aaaa",
+                style: pw.TextStyle(
+                  fontSize: 18,
+                )),
+            pw.Text(
+              "Hello World aaaa",
             ),
-                    pw.Image(image),//, width: 100, height: 200
+            pw.Text("中文支持，今天天气怎么样，天气好吗",
+                style:
+                    pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+            pw.Container(
+                width: 200, height: 200, color: PdfColor.fromInt(0xFF9b7449)
+//              child: pw.Image(image2),
+                ),
+            pw.Image(image),
 //            pw.Container(
 //                height: 500,
 //                width: 200,
@@ -88,7 +108,9 @@ class _PDFPageWidgetState extends State<PDFPageWidget> {
     path = filePdf.path;
 
     await filePdf.writeAsBytes(pdf.save());
-    setState(() {});
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -103,31 +125,42 @@ class _PDFPageWidgetState extends State<PDFPageWidget> {
               },
               child: Icon(Icons.arrow_back_ios)),
         ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              path != null
-                  ? Container(
-                      height: 300.0,
-                      child: PdfViewer(
-                        filePath: path,
-                      ),
-                    )
-                  : Text("Pdf is not Loaded"),
-              RaisedButton(
-                child: Text("Load pdf"),
-                onPressed: () {
-                  createAndSavePdf();
-                },
-              ),
-              RaisedButton(
-                  child: Text('share pdf'),
+        body: ModalProgressHUD(
+          inAsyncCall: _isLoading,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                path != null
+                    ? Container(
+                        height: 300.0,
+                        child: PdfViewer(
+                          filePath: path,
+                        ),
+                      )
+                    : Text("Pdf is not Loaded"),
+                RaisedButton(
+                  child: Text(
+                    "Load pdf aaa",
+                    style: TextStyle(fontSize: 20, fontFamily: 'Ali'),
+                  ),
+                  onPressed: () {
+                    createAndSavePdf();
+                  },
+                ),
+                RaisedButton(
+                  child: Text(
+                    'share pdf aaa',
+                    style:
+                        TextStyle(fontSize: 20, fontFamily: 'SourceHanSansCN'),
+                  ),
                   onPressed: () {
                     print('share pdf select');
-                  }),
-              Image.asset('assets/images/add_blue.png'),
-              Image(image: AssetImage('assets/images/add_blue.png')),
-            ],
+                  },
+                ),
+                Image.asset('assets/images/add_blue.png'),
+                Image(image: AssetImage('assets/images/add_blue.png')),
+              ],
+            ),
           ),
         ),
       ),
